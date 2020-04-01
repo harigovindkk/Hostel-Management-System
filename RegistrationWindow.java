@@ -29,40 +29,40 @@ public class RegistrationWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tf_fullname = new javax.swing.JTextField();
+        tf_collegeregno = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jTextField3 = new javax.swing.JTextField();
+        ff_phonenumber = new javax.swing.JFormattedTextField();
+        tf_email = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pf_password = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        pf_reenterpassword = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        cb_registerasa = new javax.swing.JComboBox<>();
+        b_validateandsubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Registration ");
+        jLabel1.setText("Registration Window ");
 
         jLabel2.setText("Full Name");
 
         jLabel3.setText("College Reg. No");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tf_fullname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tf_fullnameActionPerformed(evt);
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        tf_collegeregno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField2KeyPressed(evt);
+                tf_collegeregnoKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                tf_collegeregnoKeyTyped(evt);
             }
         });
 
@@ -70,18 +70,18 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         jLabel5.setText("E-mail");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        jFormattedTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        ff_phonenumber.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        ff_phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jFormattedTextField1KeyPressed(evt);
+                ff_phonenumberKeyPressed(evt);
             }
         });
 
         jLabel6.setText("Password");
 
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        pf_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                pf_passwordActionPerformed(evt);
             }
         });
 
@@ -89,12 +89,12 @@ public class RegistrationWindow extends javax.swing.JFrame {
 
         jLabel8.setText("Register as a");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "HS/MD", "Admin" }));
+        cb_registerasa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "HS/MD", "Admin" }));
 
-        jButton1.setText("Validate and Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        b_validateandsubmit.setText("Validate and Submit");
+        b_validateandsubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                b_validateandsubmitActionPerformed(evt);
             }
         });
 
@@ -104,9 +104,6 @@ public class RegistrationWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,16 +116,19 @@ public class RegistrationWindow extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jFormattedTextField1)
-                            .addComponent(jTextField3)
-                            .addComponent(jPasswordField1)
-                            .addComponent(jPasswordField2)
-                            .addComponent(jComboBox1, 0, 113, Short.MAX_VALUE)))
+                            .addComponent(tf_fullname)
+                            .addComponent(tf_collegeregno)
+                            .addComponent(ff_phonenumber)
+                            .addComponent(tf_email)
+                            .addComponent(pf_password)
+                            .addComponent(pf_reenterpassword)
+                            .addComponent(cb_registerasa, 0, 113, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(jButton1)))
+                        .addComponent(b_validateandsubmit))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jLabel1)))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -140,81 +140,81 @@ public class RegistrationWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tf_fullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_collegeregno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ff_phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tf_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pf_reenterpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_registerasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
-                .addComponent(jButton1)
+                .addComponent(b_validateandsubmit)
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>                        
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void tf_fullnameActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }                                           
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    private void pf_passwordActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }                                               
+    }                                           
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void b_validateandsubmitActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         // TODO add your handling code here:
+    }                                                   
+
+    private void tf_collegeregnoKeyTyped(java.awt.event.KeyEvent evt) {                                         
+                 // TODO add your handling code here:
     }                                        
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {                                     
-                 // TODO add your handling code here:
-    }                                    
-
-    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {                                       
+    private void tf_collegeregnoKeyPressed(java.awt.event.KeyEvent evt) {                                           
 char c=evt.getKeyChar();
 if(Character.isLetter(c))
 {
-    jTextField2.setEditable(false);
+    tf_collegeregno.setEditable(false);
 }
 else
 {
-    jTextField2.setEditable(true);
+    tf_collegeregno.setEditable(true);
 
 }
 // TODO add your handling code here:
-    }                                      
+    }                                          
 
-    private void jFormattedTextField1KeyPressed(java.awt.event.KeyEvent evt) {                                                
+    private void ff_phonenumberKeyPressed(java.awt.event.KeyEvent evt) {                                          
 char c=evt.getKeyChar();
 if(Character.isLetter(c))
 {
-    jFormattedTextField1.setEditable(false);
+    ff_phonenumber.setEditable(false);
 }
 else
 {
-    jFormattedTextField1.setEditable(true);
+    ff_phonenumber.setEditable(true);
 
 }        // TODO add your handling code here:
-    }                                               
+    }                                         
 
     /**
      * @param args the command line arguments
@@ -252,9 +252,9 @@ else
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton b_validateandsubmit;
+    private javax.swing.JComboBox<String> cb_registerasa;
+    private javax.swing.JFormattedTextField ff_phonenumber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -263,11 +263,11 @@ else
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField pf_password;
+    private javax.swing.JPasswordField pf_reenterpassword;
+    private javax.swing.JTextField tf_collegeregno;
+    private javax.swing.JTextField tf_email;
+    private javax.swing.JTextField tf_fullname;
     // End of variables declaration                   
 }
 
