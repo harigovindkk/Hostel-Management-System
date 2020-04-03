@@ -44,8 +44,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
         b_validateandsubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Registration Window ");
+        setTitle("Registration Window ");
 
         jLabel2.setText("Full Name");
 
@@ -167,7 +166,7 @@ public class RegistrationWindow extends javax.swing.JFrame {
                     .addComponent(cb_registerasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addComponent(b_validateandsubmit)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
