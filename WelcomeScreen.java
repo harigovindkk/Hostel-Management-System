@@ -57,6 +57,11 @@ public class WelcomeScreen extends javax.swing.JFrame {
         jLabel3.setText("Do not have an account? ");
 
         b_signup.setText("Sign Up");
+ b_signup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                  b_signupActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,7 +115,17 @@ public class WelcomeScreen extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>      
+private void b_signupActionPerformed(java.awt.event.ActionEvent evt) {    
+try { 
+             Process p = Runtime.getRuntime().exec("javac RegistrationWindow.java");
+        Process p2 = Runtime.getRuntime().exec("java RegistrationWindow");
+	p.wait(1000);
+        }catch (Exception e) {  
+             //e.printStackTrace();  
+        }                                                 
+        // TODO add your handling code here:
+    }                        
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
