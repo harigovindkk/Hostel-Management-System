@@ -11,6 +11,7 @@ package projecttemp;
  * @author hari
  */
 import java.sql.*;
+import javax.swing.JOptionPane;
 public class RegistrationWindow extends javax.swing.JFrame {
 
     /**
@@ -52,7 +53,7 @@ private static int flag=1;
         cb_registerasa = new javax.swing.JComboBox<>();
         b_validateandsubmit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registration Window ");
 
         jLabel2.setText("Full Name");
@@ -100,53 +101,15 @@ private static int flag=1;
         cb_registerasa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "HS/MD", "Admin" }));
 
         b_validateandsubmit.setText("Validate and Submit");
-        b_validateandsubmit.addActionListener((java.awt.event.ActionEvent evt) -> {
-        try {
-                b_validateandsubmitActionPerformed(evt);
-                fullname=tf_fullname.getText();
-                collegeregno=tf_collegeregno.getText();
-                phonenumber=ff_phonenumber.getText();
-                email=tf_email.getText();
-                password=pf_password.getText();
-                reenterpassword=pf_reenterpassword.getText();
-                if (fullname.equals("")||collegeregno.equals("")||password.equals("")) {
-                    System.out.println("Re-enter");
-                } else {
-                    if (password.equals(reenterpassword)) {
-                        //String url="jdbc:mysql://localhost:3306/proj";
-                        //String uname="hari";
-                        //String pass="ubuntupasssword";
-                        String query;
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
-                        PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`STUDENTLIST` (`NAME`, `REG_NO`, `PHONE_NUMBER`, `EMAIL`, `PASSWORD`) VALUES (?, ?, ?, ?, ?);");
-                        stmt.setString(1,fullname);
-                        stmt.setString(2,collegeregno);
-                        stmt.setString(3,phonenumber);
-                        stmt.setString(4,email);
-                        stmt.setString(5,password);
-                        //stmt.setString(6,reenterpassword);
-                        int flag1 = stmt.executeUpdate();
-                        System.out.println("Updated is " + flag1);
-                        //ResultSet rs=st.executeQuery(query);
-                        //rs.next();
-                        //int num=rs.getInt("ROLLNUM");
-                        //System.out.println("Num is "+num);
-                        stmt.close();
-                        con.close();
-                    } else {
-                        System.out.println("Password dont match");
-                    }
-                }
-            }catch(SQLException s)
-            {
-                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
-            }catch(Exception e)
-            {
-                System.out.println("Exception "+e.toString());
+        b_validateandsubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               b_validateandsubmitActionPerformed(evt);
             }
         });
+       
+                
+               
+    
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,6 +196,53 @@ private static int flag=1;
 
     private void b_validateandsubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_validateandsubmitActionPerformed
         // TODO add your handling code here:
+        try
+        {
+         fullname=tf_fullname.getText();
+                collegeregno=tf_collegeregno.getText();
+                phonenumber=ff_phonenumber.getText();
+                email=tf_email.getText();
+                password=pf_password.getText();
+                reenterpassword=pf_reenterpassword.getText();
+                if (fullname.equals("")||collegeregno.equals("")||password.equals("")) {
+                    System.out.println("Re-enter");
+                } else {
+                    if (password.equals(reenterpassword)) {
+                        String query;
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`STUDENTLIST` (`NAME`, `REG_NO`, `PHONE_NUMBER`, `EMAIL`, `PASSWORD`,`ROOM_NO`) VALUES (?, ?, ?, ?, ?, ?);");
+                        stmt.setString(1,fullname);
+                        stmt.setString(2,collegeregno);
+                        stmt.setString(3,phonenumber);
+                        stmt.setString(4,email);
+                        stmt.setString(5,password);
+                        stmt.setString(6,"");
+                        int flag1 = stmt.executeUpdate();
+                        if(flag1==1)
+                        {
+                                JOptionPane.showMessageDialog(null,"Registration Succesful");
+                                tf_fullname.setText("");
+                                tf_collegeregno.setText("");
+                                ff_phonenumber.setText("");
+                                tf_email.setText("");
+                                pf_password.setText("");
+                                pf_reenterpassword.setText("");
+                        }
+                        stmt.close();
+                        con.close();
+                    } else {
+                        System.out.println("Password dont match");
+                    }
+                }
+            }catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
     }//GEN-LAST:event_b_validateandsubmitActionPerformed
 
     private void tf_collegeregnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_collegeregnoKeyTyped

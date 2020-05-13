@@ -20,7 +20,9 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
      * Creates new form Home_OutgoingRegister
      */
     private static int flag=1;
-    public Home_OutgoingRegister() {
+    String userid;
+    public Home_OutgoingRegister(String id) {
+        userid=id;
         initComponents();
         if(flag==1)
        {
@@ -37,7 +39,9 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
          Statement st=con.createStatement();
-         PreparedStatement pst=con.prepareStatement("select DATE_TIME_OUT,HOME_OUT,PLACE from proj.HOME_OUT_REG where USER_ID=1 ;");
+         PreparedStatement pst=con.prepareStatement("select DATE_TIME_OUT,HOME_OUT,PLACE from proj.HOME_OUT_REG where USER_ID= ? and DATE_TIME_IN= ? ;");
+         pst.setString(1,userid);
+         pst.setString(2, "0");
          ResultSet rs=pst.executeQuery();
          t_register.setModel(DbUtils.resultSetToTableModel(rs));
          
@@ -84,7 +88,7 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Home Going/ Out Going Register");
 
         jLabel2.setText("Select Your Option");
@@ -218,7 +222,7 @@ else
         // TODO add your handling code here:
         try
         {
-        String number="1",userid="1";
+        String number="1";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy ");  
         LocalDateTime now = LocalDateTime.now();  
         String today=dtf.format(now); 
@@ -233,8 +237,8 @@ else
         stmt.setString(3,opt);
         stmt.setString(4,place);
         stmt.setString(5,"0");
-        int flag1 = stmt.executeUpdate();
-        if(flag1==1)
+        int flag2 = stmt.executeUpdate();
+        if(flag2==1)
             JOptionPane.showMessageDialog(null,"Checked Out Succesfully");
         stmt.close();
         con.close();
@@ -262,13 +266,15 @@ else
         String today=dtf.format(now); 
         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
         Statement st=con.createStatement();
-        PreparedStatement stmt=con.prepareStatement("update proj.HOME_OUT_REG set DATE_TIME_IN = ? where user_id=1 ;");
+        PreparedStatement stmt=con.prepareStatement("update proj.HOME_OUT_REG set DATE_TIME_IN = ? where USER_ID= ? ");
         stmt.setString(1,today);
+        stmt.setString(2,userid);
         int flag1 = stmt.executeUpdate();
-        if(flag1==1)
+        System.out.println(flag1);
             JOptionPane.showMessageDialog(null,"Checked In successfully");
         stmt.close();
         con.close();
+        fetch();
         }
         catch(Exception e)
         {
@@ -307,7 +313,7 @@ else
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home_OutgoingRegister().setVisible(true);
+                new Home_OutgoingRegister(userid).setVisible(true);
             }
         });
     }

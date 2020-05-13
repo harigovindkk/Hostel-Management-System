@@ -24,7 +24,9 @@ public class ComplaintRegister extends javax.swing.JFrame {
      * Creates new form ComplaintRegister
      */
    private static int flag=1;
-   public ComplaintRegister() {
+   String userid;
+   public ComplaintRegister(String id) {
+       userid=id;
        initComponents();
        if(flag==1)
        {
@@ -41,7 +43,8 @@ public class ComplaintRegister extends javax.swing.JFrame {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
          Statement st=con.createStatement();
-         PreparedStatement pst=con.prepareStatement("select C_NUM,RELATED_TO,DETAILS,DATE_TIME,STATUS from proj.COMPLAINT_REG where USER_ID=1");
+         PreparedStatement pst=con.prepareStatement("select C_NUM,RELATED_TO,DETAILS,DATE_TIME,STATUS from proj.COMPLAINT_REG where USER_ID= ? ");
+         pst.setString(1,userid);
          ResultSet rs=pst.executeQuery();
          t_previouscomplaints.setModel(DbUtils.resultSetToTableModel(rs));
          
@@ -87,7 +90,7 @@ public class ComplaintRegister extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Complaint Register");
 
         jLabel1.setText("Complaint Related to");
@@ -217,7 +220,7 @@ try {
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy ");  
                         LocalDateTime now = LocalDateTime.now();  
                         String today=dtf.format(now); 
-                        String number="1",userid="1";
+                        String number="1";
                         String relatedto=cb_relatedto.getItemAt(cb_relatedto.getSelectedIndex());
                         String details=ta_details.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -249,7 +252,7 @@ try {
 
     /**
      */
-    public static void dofunction() {
+    public void dofunction() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -276,7 +279,7 @@ try {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComplaintRegister().setVisible(true);
+                new ComplaintRegister(userid).setVisible(true);
             }
         });
     }

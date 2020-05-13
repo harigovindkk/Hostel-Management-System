@@ -10,13 +10,25 @@ package projecttemp;
  *
  * @author hari
  */
+import java.io.*;
 public class StudentDashboard extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentDashboard
      */
-    public StudentDashboard() {
+     String id;
+    private static int flag=1;
+    public StudentDashboard(String userid) {
+        id=userid;
         initComponents();
+        //System.out.println("The id is "+id);
+        if(flag==1)
+       {
+           flag=0;
+           
+           main();
+       }
+        
     }
 
     /**
@@ -38,7 +50,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         b_studentslookup = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Dashboard");
 
         b_homegoingoutgoing.setText("Homegoing/Outgoing Register");
@@ -96,8 +108,8 @@ public class StudentDashboard extends javax.swing.JFrame {
                 b_studentslookupActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Welcome User ! Select any one of the below options to continue ");
+        String text;
+        jLabel1.setText("Welcome "+id+ "! Select any one of the below options to continue ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,17 +162,20 @@ public class StudentDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_homegoingoutgoingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_homegoingoutgoingActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        new Home_OutgoingRegister(id);
+        
                   
     }//GEN-LAST:event_b_homegoingoutgoingActionPerformed
 
     private void b_complaintregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_complaintregisterActionPerformed
         // TODO add your handling code here:
-        new ComplaintRegister();
+        new ComplaintRegister(id);
     }//GEN-LAST:event_b_complaintregisterActionPerformed
 
     private void b_suggestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_suggestionsActionPerformed
         // TODO add your handling code here:
+        new Suggestions(id);
     }//GEN-LAST:event_b_suggestionsActionPerformed
 
     private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_b_messmenuActionPerformed
@@ -170,10 +185,12 @@ public class StudentDashboard extends javax.swing.JFrame {
 
     private void b_hostelvacateroomchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hostelvacateroomchangeActionPerformed
         // TODO add your handling code here:
+        new VacateChange(id);
     }//GEN-LAST:event_b_hostelvacateroomchangeActionPerformed
 
     private void b_studentslookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_studentslookupActionPerformed
         // TODO add your handling code here:
+        new StudentsLookup();
     }//GEN-LAST:event_b_studentslookupActionPerformed
 
     private void b_messreductionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messreductionActionPerformed
@@ -187,7 +204,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void main() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -214,7 +231,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentDashboard().setVisible(true);
+                new StudentDashboard(id).setVisible(true);
             }
         });
     }

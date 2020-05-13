@@ -1,5 +1,7 @@
 package projecttemp;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -67,7 +69,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Hostel Management Application");
 
         jLabel1.setText("User Id");
@@ -101,7 +103,6 @@ public class WelcomeScreen extends javax.swing.JFrame {
 
         cb_loginas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Student", "HS", "Admin" }));
 
-        jLabel5.setText("Please contact system admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,10 +174,64 @@ public class WelcomeScreen extends javax.swing.JFrame {
 
     private void b_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_loginActionPerformed
         // TODO add your handling code here:
+        try
+        {
+           String userid=tf_userid.getText();
+            String password=pf_password.getText();
+            String usertype=cb_loginas.getSelectedItem().toString();
+            PreparedStatement stmt = null;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+            if(usertype.equals("HS"))
+                stmt=con.prepareStatement("SELECT * FROM proj.STUDENTLIST WHERE REG_NO=? AND PASSWORD=?;");
+            else
+                if(usertype.equals("Student"))
+                {
+                    //System.out.println("Hai");
+                    stmt=con.prepareStatement("SELECT * from proj.STUDENTLIST WHERE REG_NO=? AND PASSWORD=?;");
+
+                }
+                else
+                    stmt=con.prepareStatement("SELECT * FROM proj.ADMIN WHERE REG_NO=? AND PASSWORD=?;");
+            
+            stmt.setString(1,userid);
+            stmt.setString(2,password);
+            ResultSet rs=stmt.executeQuery();
+            //System.out.println(rs);
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null,"Login Success");
+                if(usertype.equals("Admin"))
+                {
+                    
+                    //new WardenDashboard();
+                }
+                else if((usertype.equals("Student")))
+                        {
+                            new StudentDashboard(userid);
+                        }
+                else
+                {
+                    new StudentDashboard(userid);
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Invalid Credentials");
+                tf_userid.setText("");
+                pf_password.setText("");
+                
+            }
+            
+        }
+        catch(Exception e)
+        {
+          JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_b_loginActionPerformed
 
     private void b_forgotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_forgotpasswordActionPerformed
         // TODO add your handling code here:
+                jLabel5.setText("Please contact system admin");
+
     }//GEN-LAST:event_b_forgotpasswordActionPerformed
 
     private void b_signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_signupActionPerformed
