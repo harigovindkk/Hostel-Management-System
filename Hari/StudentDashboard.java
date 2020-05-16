@@ -39,7 +39,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+setResizable(false);
         b_homegoingoutgoing = new javax.swing.JButton();
         b_complaintregister = new javax.swing.JButton();
         b_suggestions = new javax.swing.JButton();
@@ -195,10 +195,12 @@ public class StudentDashboard extends javax.swing.JFrame {
 
     private void b_messreductionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messreductionActionPerformed
         // TODO add your handling code here:
+        new MessReduction(id);
     }//GEN-LAST:event_b_messreductionActionPerformed
 
     private void b_messbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messbillActionPerformed
         // TODO add your handling code here:
+        new MessBill(id);
     }//GEN-LAST:event_b_messbillActionPerformed
 
     /**

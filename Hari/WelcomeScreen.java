@@ -29,6 +29,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        setResizable(false);
 
         jTextField1 = new javax.swing.JTextField();
         jDialog1 = new javax.swing.JDialog();
@@ -224,7 +225,8 @@ public class WelcomeScreen extends javax.swing.JFrame {
         }
         catch(Exception e)
         {
-          JOptionPane.showMessageDialog(null, e);
+          //JOptionPane.showMessageDialog(null, e);
+            System.out.println(e);
         }
     }//GEN-LAST:event_b_loginActionPerformed
 
