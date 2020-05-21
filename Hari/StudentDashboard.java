@@ -180,7 +180,7 @@ setResizable(false);
 
     private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_b_messmenuActionPerformed
         // TODO add your handling code here:
-        new MessMenu();
+        new ViewMessMenu();
     }//GEN-LAST:event_b_messmenuActionPerformed
 
     private void b_hostelvacateroomchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hostelvacateroomchangeActionPerformed
