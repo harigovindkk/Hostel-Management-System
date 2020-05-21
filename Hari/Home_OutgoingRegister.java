@@ -109,11 +109,6 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
 
         jLabel5.setText("Place");
 
-        tf_place.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tf_placeKeyPressed(evt);
-            }
-        });
 
         jLabel6.setText("Check Out Form");
 
@@ -205,18 +200,6 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tf_placeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_placeKeyPressed
-char c=evt.getKeyChar();
-if(Character.isLetter(c))
-{
-    tf_place.setEditable(true);
-}
-else
-{
-    tf_place.setEditable(false);
-
-} // TODO add your handling code here:
-    }//GEN-LAST:event_tf_placeKeyPressed
 
     private void b_checkoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_checkoutActionPerformed
         // TODO add your handling code here:
