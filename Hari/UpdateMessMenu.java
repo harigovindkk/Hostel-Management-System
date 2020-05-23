@@ -35,17 +35,17 @@ public class UpdateMessMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        b_choosefile = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tf_selectedfile = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Mess Menu");
 
-        jButton1.setText("Choose File");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        b_choosefile.setText("Choose File");
+        b_choosefile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                b_choosefileActionPerformed(evt);
             }
         });
 
@@ -62,7 +62,7 @@ public class UpdateMessMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b_choosefile, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(tf_selectedfile, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
@@ -75,7 +75,7 @@ public class UpdateMessMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(b_choosefile)
                     .addComponent(tf_selectedfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
@@ -83,7 +83,7 @@ public class UpdateMessMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void b_choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_choosefileActionPerformed
         // TODO add your handling code here:
          FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files","jpg");
         JFileChooser file=new JFileChooser();
@@ -116,7 +116,7 @@ public class UpdateMessMenu extends javax.swing.JFrame {
              tf_selectedfile.setText("File not chosen");
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_b_choosefileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +155,7 @@ public class UpdateMessMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton b_choosefile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField tf_selectedfile;
     // End of variables declaration//GEN-END:variables
