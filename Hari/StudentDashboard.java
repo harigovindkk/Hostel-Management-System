@@ -11,6 +11,16 @@ package projecttemp;
  * @author hari
  */
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 public class StudentDashboard extends javax.swing.JFrame {
 
     /**
@@ -21,15 +31,38 @@ public class StudentDashboard extends javax.swing.JFrame {
     public StudentDashboard(String userid) {
         id=userid;
         initComponents();
+        fetch();
+        
         //System.out.println("The id is "+id);
         if(flag==1)
        {
            flag=0;
            
            main();
+           
        }
         
     }
+    public void fetch()
+   {
+     try
+     {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+         Statement st=con.createStatement();
+         PreparedStatement pst=con.prepareStatement("SELECT MSG_FROM,MESSAGE,TIME_SENT from proj.MESSAGES where MSG_TO=? AND TIME_READ=?;");
+         pst.setString(1,id);
+         pst.setString(2,"UNREAD");
+         ResultSet rs=pst.executeQuery();
+         b_markasread.setEnabled(true);
+         t_messages.setModel(DbUtils.resultSetToTableModel(rs));
+         
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e);
+     }
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,7 +72,9 @@ public class StudentDashboard extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-setResizable(false);
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         b_homegoingoutgoing = new javax.swing.JButton();
         b_complaintregister = new javax.swing.JButton();
         b_suggestions = new javax.swing.JButton();
@@ -49,8 +84,27 @@ setResizable(false);
         b_hostelvacateroomchange = new javax.swing.JButton();
         b_studentslookup = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        b_markasread = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        b_logout = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        t_messages = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student Dashboard");
 
         b_homegoingoutgoing.setText("Homegoing/Outgoing Register");
@@ -108,38 +162,92 @@ setResizable(false);
                 b_studentslookupActionPerformed(evt);
             }
         });
-        String text;
-        jLabel1.setText("Welcome "+id+ "! Select any one of the below options to continue ");
+
+        jLabel1.setText("Welcome User ! ");
+
+        jLabel2.setText("Message Inbox");
+
+        b_markasread.setText("Mark All As Read");
+        b_markasread.setEnabled(false);
+        b_markasread.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_markasreadActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Select any one of the below options to continue ");
+
+        b_logout.setText("Logout");
+        b_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_logoutActionPerformed(evt);
+            }
+        });
+
+        t_messages.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(t_messages);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(b_suggestions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_complaintregister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_messmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_homegoingoutgoing, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(b_messbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_hostelvacateroomchange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_studentslookup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(b_messreduction, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addGap(69, 69, 69)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(b_suggestions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_complaintregister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_messmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_homegoingoutgoing, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(b_messbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_hostelvacateroomchange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_studentslookup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_messreduction, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(91, 91, 91))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(215, 215, 215)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(312, 312, 312)
                 .addComponent(jLabel1)
-                .addGap(142, 142, 142))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_hostelvacateroomchange, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_homegoingoutgoing, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,7 +263,13 @@ setResizable(false);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_messbill, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_messmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -178,7 +292,7 @@ setResizable(false);
         new Suggestions(id);
     }//GEN-LAST:event_b_suggestionsActionPerformed
 
-    private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) { //GEN-FIRST:event_b_messmenuActionPerformed
+    private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messmenuActionPerformed
         // TODO add your handling code here:
         new ViewMessMenu();
     }//GEN-LAST:event_b_messmenuActionPerformed
@@ -202,6 +316,44 @@ setResizable(false);
         // TODO add your handling code here:
         new MessBill(id);
     }//GEN-LAST:event_b_messbillActionPerformed
+
+    private void b_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_logoutActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Logged out Succesfully");
+        System.exit(0);
+    }//GEN-LAST:event_b_logoutActionPerformed
+
+    private void b_markasreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_markasreadActionPerformed
+        // TODO add your handling code here:
+         try {
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy ");  
+                        LocalDateTime now = LocalDateTime.now();  
+                        String today=dtf.format(now);
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`MESSAGES` SET `TIME_READ` = ? WHERE (`MSG_TO`=? AND`TIME_READ` = ?);");
+                        stmt.setString(1,today);
+                        stmt.setString(2,id);
+                        stmt.setString(3,"UNREAD");
+                        int flag1 = stmt.executeUpdate();
+                        if(flag1==1)
+                            JOptionPane.showMessageDialog(null,"Status Updated");
+                        stmt.close();
+                        con.close();
+                        
+                    
+                
+            }catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
+            fetch();
+        
+    }//GEN-LAST:event_b_markasreadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,11 +394,19 @@ setResizable(false);
     private javax.swing.JButton b_complaintregister;
     private javax.swing.JButton b_homegoingoutgoing;
     private javax.swing.JButton b_hostelvacateroomchange;
+    private javax.swing.JButton b_logout;
+    private javax.swing.JButton b_markasread;
     private javax.swing.JButton b_messbill;
     private javax.swing.JButton b_messmenu;
     private javax.swing.JButton b_messreduction;
     private javax.swing.JButton b_studentslookup;
     private javax.swing.JButton b_suggestions;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable t_messages;
     // End of variables declaration//GEN-END:variables
 }
