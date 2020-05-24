@@ -5,6 +5,14 @@
  */
 package projecttemp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author hari
@@ -203,6 +211,30 @@ public class UpdateMessBill extends javax.swing.JFrame {
 
     private void b_updatebillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_updatebillActionPerformed
         // TODO add your handling code here:
+        String id=tf_id.getText();
+        String newamount=tf_updatedaamount.getText();
+        int m=mc_month2.getMonth();
+        int year=mc_year2.getYear();
+        String monthname[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+        String month=monthname[m];
+         try
+     {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+         Statement st=con.createStatement();
+         PreparedStatement pst=con.prepareStatement("UPDATE `proj`.`MESS_BILL` SET `FINAL_AMOUNT` = ? WHERE (`USERID`=?, `MONTH`=? AND `YEAR`=?);");
+         pst.setString(1,id);
+         pst.setString(2,newamount);
+         pst.setString(3,month);
+         pst.setString(4,Integer.toString(year));
+         ResultSet rs=pst.executeQuery();
+         
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e);
+     }
+        
     }//GEN-LAST:event_b_updatebillActionPerformed
 
     /**

@@ -37,7 +37,7 @@ public class ContactInmates extends javax.swing.JFrame {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
          Statement st=con.createStatement();
-         PreparedStatement pst=con.prepareStatement("SELECT MSG_TO,MESSAGE,TIME_SENT,TIME_READ from proj.MESSAGES where FROM= ? ;");
+         PreparedStatement pst=con.prepareStatement("SELECT MSG_TO,MESSAGE,TIME_SENT,TIME_READ from proj.MESSAGES where MSG_FROM= ? ;");
          pst.setString(1,myid);
          ResultSet rs=pst.executeQuery();
          t_previous.setModel(DbUtils.resultSetToTableModel(rs));
@@ -218,11 +218,12 @@ public class ContactInmates extends javax.swing.JFrame {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
         Statement st=con.createStatement();
-        PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`MESSAGES` (`MSG_TO`, `MSG_FROM`,`MESSAGE`,`TIME_SENT`) VALUES (?, ?, ?, ?);");
+        PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`MESSAGES` (`MSG_TO`, `MSG_FROM`,`MESSAGE`,`TIME_SENT`,`TIME_READ`) VALUES (?, ?, ?, ?, ?);");
         stmt.setString(1,"ALL");
         stmt.setString(2,myid);
         stmt.setString(3,message);
         stmt.setString(4,today);
+        stmt.setString(5,"N.A");
         int flag2 = stmt.executeUpdate();
         if(flag2==1)
             JOptionPane.showMessageDialog(null,"Message Sent to all Inmates!");
