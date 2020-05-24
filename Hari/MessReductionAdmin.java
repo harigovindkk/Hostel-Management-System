@@ -5,6 +5,17 @@
  */
 package projecttemp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author hari
@@ -14,9 +25,29 @@ public class MessReductionAdmin extends javax.swing.JFrame {
     /**
      * Creates new form MessReductionAdmin
      */
+    String userid;
     public MessReductionAdmin() {
         initComponents();
+        fetch();
     }
+    public void fetch()
+   {
+     try
+     {
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+         Statement st=con.createStatement();
+         PreparedStatement pst=con.prepareStatement("select REQ_NO,USERID,FROM_DATE,TO_DATE,DATE_SUBMITTED,REASON,STATUS from proj.MESS_REDUCTION_REG");
+         ResultSet rs=pst.executeQuery();
+         t_record.setModel(DbUtils.resultSetToTableModel(rs));
+         
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e);
+     }
+   }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,19 +111,19 @@ public class MessReductionAdmin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_reqno)
-                            .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cb_status, 0, 179, Short.MAX_VALUE)
+                            .addComponent(tf_reqno)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(132, 132, 132)
-                        .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                        .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,8 +131,8 @@ public class MessReductionAdmin extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -112,8 +143,8 @@ public class MessReductionAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cb_status, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
-                .addComponent(b_update)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addComponent(b_update, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
 
         pack();
@@ -121,6 +152,31 @@ public class MessReductionAdmin extends javax.swing.JFrame {
 
     private void b_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_updateActionPerformed
         // TODO add your handling code here:
+        try {
+                        String status=cb_status.getItemAt(cb_status.getSelectedIndex());
+                        String requestnum=tf_reqno.getText();
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`MESS_REDUCTION_REG` SET `STATUS` = ? WHERE (`REQ_NO` = ?);");
+                        stmt.setString(1,status);
+                        stmt.setString(2,requestnum);
+                        int flag1 = stmt.executeUpdate();
+                        if(flag1==1)
+                            JOptionPane.showMessageDialog(null,"Status Updated");
+                        stmt.close();
+                        con.close();
+                        
+                    
+                
+            }catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
+            fetch();
     }//GEN-LAST:event_b_updateActionPerformed
 
     /**

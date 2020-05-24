@@ -5,6 +5,15 @@
  */
 package projecttemp;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author hari
@@ -94,27 +103,36 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tf_namesearch)
-                            .addComponent(tf_phnosearch)
-                            .addComponent(tf_searchroom, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(b_searchbyname)
-                            .addComponent(b_searchbyphno)
-                            .addComponent(b_searchbyroom))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jLabel3))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(tf_namesearch)
+                                            .addComponent(tf_phnosearch)
+                                            .addComponent(tf_searchroom, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(b_searchbyname)
+                                            .addComponent(b_searchbyphno)
+                                            .addComponent(b_searchbyroom)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel5)))
+                        .addGap(0, 53, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,9 +155,9 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
                         .addComponent(tf_searchroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(b_searchbyroom))
                     .addComponent(jLabel3))
-                .addGap(57, 57, 57)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel5)
-                .addGap(30, 30, 30)
+                .addGap(31, 31, 31)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -149,14 +167,80 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
 
     private void b_searchbynameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchbynameActionPerformed
         // TODO add your handling code here:
+        try {
+                
+                        String name=tf_namesearch.getText();
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        int flag=0;
+                        PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where NAME like '%"+ name + "%';");
+                        ResultSet rs= stmt.executeQuery();
+                        t_result.setModel(DbUtils.resultSetToTableModel(rs));
+                        stmt.close();
+                        con.close();
+                        tf_namesearch.setText("");
+                    }
+                
+            catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
     }//GEN-LAST:event_b_searchbynameActionPerformed
 
     private void b_searchbyphnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchbyphnoActionPerformed
         // TODO add your handling code here:
+        try {
+                
+                        String phno=tf_phnosearch.getText();
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        int flag=0;
+                        PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where PHONE_NUMBER='"+ phno + "';");
+                        ResultSet rs= stmt.executeQuery();
+                        t_result.setModel(DbUtils.resultSetToTableModel(rs));
+                        stmt.close();
+                        con.close();
+                        tf_phnosearch.setText("");
+                    }
+                
+            catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
     }//GEN-LAST:event_b_searchbyphnoActionPerformed
 
     private void b_searchbyroomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_searchbyroomActionPerformed
         // TODO add your handling code here:
+        try {
+                
+                        String roomno=tf_searchroom.getText();
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
+                        Statement st=con.createStatement();
+                        int flag=0;
+                        PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where ROOM_NO='"+ roomno + "';");
+                        ResultSet rs= stmt.executeQuery();
+                        t_result.setModel(DbUtils.resultSetToTableModel(rs));
+                        stmt.close();
+                        con.close();
+                        tf_searchroom.setText("");
+                    }
+                
+            catch(SQLException s)
+            {
+                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
+            }catch(Exception e)
+            {
+                System.out.println("Exception "+e.toString());
+            }
     }//GEN-LAST:event_b_searchbyroomActionPerformed
 
     /**
