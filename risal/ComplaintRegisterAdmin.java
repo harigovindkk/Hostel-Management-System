@@ -147,11 +147,13 @@ public class ComplaintRegisterAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_deletecomplaintsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_deletecomplaintsActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+        new DeleteComplaintsAdmin();
     }//GEN-LAST:event_b_deletecomplaintsActionPerformed
 
     private void b_changestatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_changestatusActionPerformed
         // TODO add your handling code here:
+        new ChangeStatusAdmin();
     }//GEN-LAST:event_b_changestatusActionPerformed
 
     /**
