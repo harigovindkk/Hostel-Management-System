@@ -218,7 +218,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null,"Invalid Credentials");
+                JOptionPane.showMessageDialog(null,"Username or Password is incorrect","Invalid Credentials",JOptionPane.ERROR_MESSAGE);
                 tf_userid.setText("");
                 pf_password.setText("");
                 

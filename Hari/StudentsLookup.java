@@ -2,6 +2,8 @@ package projecttemp;
 
 
 import java.sql.*;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 /*
@@ -192,8 +194,11 @@ setResizable(false);
                         PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER from proj.STUDENTLIST where NAME='"+ name + "';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
-                        if(rs!=null)
-                            JOptionPane.showMessageDialog(null,"Student found");
+                        if(rs.first())
+                             JOptionPane.showMessageDialog(new JFrame(),"Student found","Search Success",JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(new JFrame(),"Student Not found","Search Failure",JOptionPane.ERROR_MESSAGE);
+                        
                         stmt.close();
                         con.close();
                     }
@@ -216,11 +221,13 @@ setResizable(false);
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
                         Statement st=con.createStatement();
                         int flag=0;
-                        PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER from proj.STUDENTLIST where REG_NO='"+ room + "';");
+                        PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER from proj.STUDENTLIST where ROOM_NO='"+ room + "';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
-                        if(rs!=null)
-                            JOptionPane.showMessageDialog(null,"Student found");
+                        if(rs.first())
+                             JOptionPane.showMessageDialog(new JFrame(),"Student found","Search Success",JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(new JFrame(),"Student Not found","Search Failure",JOptionPane.ERROR_MESSAGE);
                         stmt.close();
                         con.close();
                     }
@@ -247,8 +254,10 @@ setResizable(false);
                         PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER from proj.STUDENTLIST where REG_NO='"+ regno + "';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
-                        if(rs!=null)
-                            JOptionPane.showMessageDialog(null,"Student found");
+                        if(rs.first())
+                             JOptionPane.showMessageDialog(new JFrame(),"Student found","Search Success",JOptionPane.INFORMATION_MESSAGE);
+                        else
+                            JOptionPane.showMessageDialog(new JFrame(),"Student Not found","Search Failure",JOptionPane.ERROR_MESSAGE);
                         stmt.close();
                         con.close();
                     }
