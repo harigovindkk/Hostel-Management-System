@@ -10,6 +10,7 @@ package projecttemp;
  *
  * @author hari
  */
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,6 +32,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     public StudentDashboard(String userid) {
         id=userid;
         initComponents();
+        tf_welcomemessage.setText("Welcome "+id+"!");
         fetch();
         
         //System.out.println("The id is "+id);
@@ -54,6 +56,7 @@ public class StudentDashboard extends javax.swing.JFrame {
          pst.setString(1,id);
          pst.setString(2,"UNREAD");
          ResultSet rs=pst.executeQuery();
+         if(rs.next())
          b_markasread.setEnabled(true);
          t_messages.setModel(DbUtils.resultSetToTableModel(rs));
          
@@ -83,13 +86,14 @@ public class StudentDashboard extends javax.swing.JFrame {
         b_messreduction = new javax.swing.JButton();
         b_hostelvacateroomchange = new javax.swing.JButton();
         b_studentslookup = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        tf_welcomemessage = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         b_markasread = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         b_logout = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         t_messages = new javax.swing.JTable();
+        b_myprofile = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,7 +108,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Student Dashboard");
 
         b_homegoingoutgoing.setText("Homegoing/Outgoing Register");
@@ -163,7 +167,7 @@ public class StudentDashboard extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Welcome User ! ");
+        tf_welcomemessage.setText("Welcome User ! ");
 
         jLabel2.setText("Message Inbox");
 
@@ -197,6 +201,13 @@ public class StudentDashboard extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(t_messages);
 
+        b_myprofile.setText("My Profile");
+        b_myprofile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_myprofileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -224,18 +235,21 @@ public class StudentDashboard extends javax.swing.JFrame {
                                     .addComponent(b_messreduction, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(91, 91, 91))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(312, 312, 312)
-                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
+                .addComponent(tf_welcomemessage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(b_myprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel3)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -243,11 +257,12 @@ public class StudentDashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tf_welcomemessage, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_myprofile, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_hostelvacateroomchange, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_homegoingoutgoing, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -269,7 +284,7 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -320,7 +335,8 @@ public class StudentDashboard extends javax.swing.JFrame {
     private void b_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_logoutActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Logged out Succesfully");
-        System.exit(0);
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        //System.exit(0);
     }//GEN-LAST:event_b_logoutActionPerformed
 
     private void b_markasreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_markasreadActionPerformed
@@ -354,6 +370,11 @@ public class StudentDashboard extends javax.swing.JFrame {
             fetch();
         
     }//GEN-LAST:event_b_markasreadActionPerformed
+
+    private void b_myprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_myprofileActionPerformed
+        // TODO add your handling code here:
+        new MyProfile(id);
+    }//GEN-LAST:event_b_myprofileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,14 +420,15 @@ public class StudentDashboard extends javax.swing.JFrame {
     private javax.swing.JButton b_messbill;
     private javax.swing.JButton b_messmenu;
     private javax.swing.JButton b_messreduction;
+    private javax.swing.JButton b_myprofile;
     private javax.swing.JButton b_studentslookup;
     private javax.swing.JButton b_suggestions;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable t_messages;
+    private javax.swing.JLabel tf_welcomemessage;
     // End of variables declaration//GEN-END:variables
 }

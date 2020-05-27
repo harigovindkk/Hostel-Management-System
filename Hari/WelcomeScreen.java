@@ -178,7 +178,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
         try
         {
            String userid=tf_userid.getText();
-            String password=pf_password.getText();
+            String password=new String(pf_password.getPassword());
             String usertype=cb_loginas.getSelectedItem().toString();
             PreparedStatement stmt = null;
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -200,6 +200,8 @@ public class WelcomeScreen extends javax.swing.JFrame {
             ResultSet rs=stmt.executeQuery();
             //System.out.println(rs);
             if(rs.next()){
+                tf_userid.setText("");
+                pf_password.setText("");
                 JOptionPane.showMessageDialog(null,"Login Success");
                 if(usertype.equals("Admin"))
                 {
