@@ -184,7 +184,12 @@ public class WelcomeScreen extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
             if(usertype.equals("HS"))
-                stmt=con.prepareStatement("SELECT * FROM proj.STUDENTLIST WHERE REG_NO=? AND PASSWORD=?;");
+            {
+                  stmt=con.prepareStatement("SELECT * FROM `proj`.`STUDENTLIST` WHERE (`REG_NO`=? and `PASSWORD`=?) and `IS_MD`=?;");
+                  stmt.setString(3,"TRUE");
+                  
+            }
+              
             else
                 if(usertype.equals("Student"))
                 {
@@ -210,11 +215,11 @@ public class WelcomeScreen extends javax.swing.JFrame {
                 }
                 else if((usertype.equals("Student")))
                         {
-                            new StudentDashboard(userid);
+                            new StudentDashboard(userid,false);
                         }
                 else
                 {
-                    new StudentDashboard(userid);
+                    new StudentDashboard(userid,true);
                 }
             }
             else{

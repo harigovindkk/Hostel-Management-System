@@ -17,13 +17,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author hari
  */
+
 public class MessMenuAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame
      */
+    private static int flag=1;
     public MessMenuAdmin() {
         initComponents();
+        if(flag==1)
+       {
+           flag=0;
+           messmenu();
+           
+       }
+        
     }
 
     /**
@@ -40,7 +49,7 @@ public class MessMenuAdmin extends javax.swing.JFrame {
         tf_selectedfile = new javax.swing.JTextField();
         b_viewmenu = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Mess Menu");
 
         b_choosefile.setText("Choose File");
@@ -141,7 +150,7 @@ public class MessMenuAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public void messmenu() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

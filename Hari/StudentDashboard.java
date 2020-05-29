@@ -29,13 +29,14 @@ public class StudentDashboard extends javax.swing.JFrame {
      */
      String id;
     private static int flag=1;
-    public StudentDashboard(String userid) {
+    boolean val=false;
+    public StudentDashboard(String userid, boolean b) {
         id=userid;
+        val=b;
         initComponents();
+        System.out.println(val);
         tf_welcomemessage.setText("Welcome "+id+"!");
         fetch();
-        
-        //System.out.println("The id is "+id);
         if(flag==1)
        {
            flag=0;
@@ -309,7 +310,10 @@ public class StudentDashboard extends javax.swing.JFrame {
 
     private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messmenuActionPerformed
         // TODO add your handling code here:
-        new ViewMessMenu();
+        if(val==false)
+            new ViewMessMenu();
+        else
+            new MessMenuAdmin();
     }//GEN-LAST:event_b_messmenuActionPerformed
 
     private void b_hostelvacateroomchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hostelvacateroomchangeActionPerformed
@@ -406,7 +410,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentDashboard(id).setVisible(true);
+                new StudentDashboard(id,val).setVisible(true);
             }
         });
     }
