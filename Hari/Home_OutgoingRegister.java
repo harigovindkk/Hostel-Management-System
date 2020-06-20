@@ -38,7 +38,6 @@ public class Home_OutgoingRegister extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select DATE_TIME_OUT,HOME_OUT,PLACE from proj.HOME_OUT_REG where USER_ID= ? and DATE_TIME_IN= ? ;");
          pst.setString(1,userid);
          pst.setString(2, "0");

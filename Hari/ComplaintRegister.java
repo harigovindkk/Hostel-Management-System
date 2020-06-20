@@ -42,7 +42,6 @@ public class ComplaintRegister extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select C_NUM,RELATED_TO,DETAILS,DATE_TIME,STATUS from proj.COMPLAINT_REG where USER_ID= ? ");
          pst.setString(1,userid);
          ResultSet rs=pst.executeQuery();

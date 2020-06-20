@@ -52,7 +52,6 @@ public class StudentDashboard extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("SELECT MSG_FROM,MESSAGE,TIME_SENT from proj.MESSAGES where MSG_TO=? AND TIME_READ=?;");
          pst.setString(1,id);
          pst.setString(2,"UNREAD");
