@@ -175,7 +175,6 @@ setResizable(false);
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select MONTH,YEAR, FINAL_AMOUNT,DUE_DATE, STATUS from proj.MESS_BILL where USERID=? ");
          pst.setString(1,userid);
          ResultSet rs=pst.executeQuery();

@@ -36,7 +36,6 @@ public class ContactInmatesAdmin extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("SELECT MSG_TO,MESSAGE,TIME_SENT,TIME_READ from proj.MESSAGES where MSG_FROM= ? ;");
          pst.setString(1,myid);
          ResultSet rs=pst.executeQuery();
