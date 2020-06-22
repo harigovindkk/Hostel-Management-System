@@ -41,7 +41,6 @@ public void fetch()
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select REQ_NO,FROM_DATE, TO_DATE,DATE_SUBMITTED,STATUS from proj.MESS_REDUCTION_REG where USERID=? ");
          pst.setString(1,userid);
          ResultSet rs=pst.executeQuery();

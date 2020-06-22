@@ -8,9 +8,7 @@ package projecttemp;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-import java.awt.*;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 /**
  *
