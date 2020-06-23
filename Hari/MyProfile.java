@@ -6,7 +6,6 @@
 package projecttemp;
 
 import java.sql.*;
-import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,7 +41,6 @@ public class MyProfile extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("SELECT REG_NO, NAME, PHONE_NUMBER, EMAIL, ROOM_NO FROM proj.STUDENTLIST WHERE REG_NO=?");                       
                         stmt.setString(1,userid);
                         ResultSet rs=stmt.executeQuery();
@@ -101,6 +99,7 @@ public class MyProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("My Profile");
+        setResizable(false);
 
         jLabel1.setText("Name");
 
@@ -273,7 +272,6 @@ public class MyProfile extends javax.swing.JFrame {
                
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`STUDENTLIST` SET `PHONE_NUMBER` = ?, `EMAIL` = ? WHERE (`REG_NO` = ?);");                       
                         stmt.setString(1,phonenumber);
                         stmt.setString(2,email);
@@ -304,7 +302,6 @@ public class MyProfile extends javax.swing.JFrame {
         {
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("SELECT `PASSWORD` FROM `proj`.`STUDENTLIST` where `REG_NO`=?");
                         stmt.setString(1,userid);
                         ResultSet rs=stmt.executeQuery();

@@ -11,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -36,7 +34,6 @@ public class MessReductionAdmin extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select REQ_NO,USERID,FROM_DATE,TO_DATE,DATE_SUBMITTED,REASON,STATUS from proj.MESS_REDUCTION_REG");
          ResultSet rs=pst.executeQuery();
          t_record.setModel(DbUtils.resultSetToTableModel(rs));
@@ -157,7 +154,6 @@ public class MessReductionAdmin extends javax.swing.JFrame {
                         String requestnum=tf_reqno.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`MESS_REDUCTION_REG` SET `STATUS` = ? WHERE (`REQ_NO` = ?);");
                         stmt.setString(1,status);
                         stmt.setString(2,requestnum);
