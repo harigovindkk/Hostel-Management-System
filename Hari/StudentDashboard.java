@@ -11,7 +11,6 @@ package projecttemp;
  * @author hari
  */
 import java.awt.event.WindowEvent;
-import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,7 +33,6 @@ public class StudentDashboard extends javax.swing.JFrame {
         id=userid;
         val=b;
         initComponents();
-        System.out.println(val);
         tf_welcomemessage.setText("Welcome "+id+"!");
         fetch();
         if(flag==1)
@@ -350,7 +348,6 @@ public class StudentDashboard extends javax.swing.JFrame {
                         String today=dtf.format(now);
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`MESSAGES` SET `TIME_READ` = ? WHERE (`MSG_TO`=? AND`TIME_READ` = ?);");
                         stmt.setString(1,today);
                         stmt.setString(2,id);

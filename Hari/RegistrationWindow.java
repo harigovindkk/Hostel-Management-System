@@ -202,8 +202,8 @@ setResizable(false);
                 collegeregno=tf_collegeregno.getText();
                 phonenumber=ff_phonenumber.getText();
                 email=tf_email.getText();
-                password=pf_password.getText();
-                reenterpassword=pf_reenterpassword.getText();
+                String password=new String(pf_password.getPassword());
+                String reenterpassword=new String(pf_reenterpassword.getPassword());
                 if (fullname.equals("")||collegeregno.equals("")||password.equals("")) {
                     System.out.println("Re-enter");
                 } else {
@@ -211,7 +211,6 @@ setResizable(false);
                         String query;
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`STUDENTLIST` (`NAME`, `REG_NO`, `PHONE_NUMBER`, `EMAIL`, `PASSWORD`,`ROOM_NO`) VALUES (?, ?, ?, ?, ?, ?);");
                         stmt.setString(1,fullname);
                         stmt.setString(2,collegeregno);
@@ -331,6 +330,4 @@ else
     private String collegeregno;     
     private String phonenumber;     
     private String email;     
-    private String password;     
-    private String reenterpassword;
 }
