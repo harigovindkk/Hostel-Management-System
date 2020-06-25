@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -172,8 +171,6 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
                         String name=tf_namesearch.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
-                        int flag=0;
                         PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where NAME like '%"+ name + "%';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
@@ -198,8 +195,6 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
                         String phno=tf_phnosearch.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
-                        int flag=0;
                         PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where PHONE_NUMBER='"+ phno + "';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
@@ -224,8 +219,6 @@ public class StudentLookupAdmin extends javax.swing.JFrame {
                         String roomno=tf_searchroom.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
-                        int flag=0;
                         PreparedStatement stmt=con.prepareStatement("select NAME, REG_NO, PHONE_NUMBER,EMAIL,ROOM_NO from proj.STUDENTLIST where ROOM_NO='"+ roomno + "';");
                         ResultSet rs= stmt.executeQuery();
                         t_result.setModel(DbUtils.resultSetToTableModel(rs));
