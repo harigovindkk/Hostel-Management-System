@@ -41,7 +41,6 @@ public class Suggestions extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("select DATE_TIME,SUGGESTION,REPLY from proj.SUGGESTIONS where USER_ID= ? ");
          pst.setString(1,userid);
          ResultSet rs=pst.executeQuery();
@@ -168,7 +167,6 @@ setResizable(false);
                         String details=ta_suggestions.getText();
                         Class.forName("com.mysql.cj.jdbc.Driver");
                         Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        Statement st=con.createStatement();
                         PreparedStatement stmt=con.prepareStatement("INSERT INTO `proj`.`SUGGESTIONS` (`USER_ID`, `SUGGESTION`, `DATE_TIME`,`REPLY`) VALUES (?, ?, ?, ?);");
                         stmt.setString(1,userid);
                         stmt.setString(2,details);

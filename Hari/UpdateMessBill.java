@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -215,13 +214,12 @@ public class UpdateMessBill extends javax.swing.JFrame {
         String newamount=tf_updatedaamount.getText();
         int m=mc_month2.getMonth();
         int year=mc_year2.getYear();
-        String monthname[]={"January","February","March","April","May","June","July","August","September","October","November","December"};
+        String monthname[]={"JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"};
         String month=monthname[m];
          try
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         Statement st=con.createStatement();
          PreparedStatement pst=con.prepareStatement("UPDATE `proj`.`MESS_BILL` SET `FINAL_AMOUNT` = ? WHERE (`USERID`=?, `MONTH`=? AND `YEAR`=?);");
          pst.setString(1,id);
          pst.setString(2,newamount);
