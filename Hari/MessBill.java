@@ -196,7 +196,7 @@ setResizable(false);
         // TODO add your handling code here:
         try
         {
-           java.awt.Desktop.getDesktop().browse(new URI("http://billdesk.com")); 
+           java.awt.Desktop.getDesktop().browse(new URI("https://easypay.axisbank.co.in/easyPay/makePayment?mid=NDM4MjY%3D")); 
         }
         catch(Exception e)
                 {

@@ -203,7 +203,6 @@ public class WelcomeScreen extends javax.swing.JFrame {
             stmt.setString(1,userid);
             stmt.setString(2,password);
             ResultSet rs=stmt.executeQuery();
-            //System.out.println(rs);
             if(rs.next()){
                 tf_userid.setText("");
                 pf_password.setText("");
