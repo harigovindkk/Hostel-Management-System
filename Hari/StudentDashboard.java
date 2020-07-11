@@ -50,12 +50,11 @@ public class StudentDashboard extends javax.swing.JFrame {
      {
          Class.forName("com.mysql.cj.jdbc.Driver");
          Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-         PreparedStatement pst=con.prepareStatement("SELECT MSG_FROM,MESSAGE,TIME_SENT from proj.MESSAGES where MSG_TO=? AND TIME_READ=?;");
+         PreparedStatement pst=con.prepareStatement("SELECT MSG_FROM,MESSAGE,TIME_SENT from proj.MESSAGES where MSG_TO=? or MSG_TO=?  order by MESSAGE_ID DESC;");
          pst.setString(1,id);
-         pst.setString(2,"UNREAD");
+         pst.setString(2,"ALL");
          ResultSet rs=pst.executeQuery();
          if(rs.next())
-         b_markasread.setEnabled(true);
          t_messages.setModel(DbUtils.resultSetToTableModel(rs));
          
      }
@@ -86,7 +85,6 @@ public class StudentDashboard extends javax.swing.JFrame {
         b_studentslookup = new javax.swing.JButton();
         tf_welcomemessage = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        b_markasread = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         b_logout = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -167,15 +165,7 @@ public class StudentDashboard extends javax.swing.JFrame {
 
         tf_welcomemessage.setText("Welcome User ! ");
 
-        jLabel2.setText("Message Inbox");
-
-        b_markasread.setText("Mark All As Read");
-        b_markasread.setEnabled(false);
-        b_markasread.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                b_markasreadActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Notifications And Messages");
 
         jLabel3.setText("Select any one of the below options to continue ");
 
@@ -241,13 +231,8 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .addComponent(b_logout, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addComponent(jLabel3)))
+                .addGap(209, 209, 209)
+                .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -280,57 +265,100 @@ public class StudentDashboard extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(b_markasread, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_homegoingoutgoingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_homegoingoutgoingActionPerformed
-        // TODO add your handling code here:        
-        new Home_OutgoingRegister(id);
+        // TODO add your handling code here:      
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Home_OutgoingRegister(id).setVisible(true);
+            }
+        });
+        //new Home_OutgoingRegister(id);
         
                   
     }//GEN-LAST:event_b_homegoingoutgoingActionPerformed
 
     private void b_complaintregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_complaintregisterActionPerformed
         // TODO add your handling code here:
-        new ComplaintRegister(id);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ComplaintRegister(id).setVisible(true);
+            }
+        });
+        //new ComplaintRegister(id);
     }//GEN-LAST:event_b_complaintregisterActionPerformed
 
     private void b_suggestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_suggestionsActionPerformed
         // TODO add your handling code here:
-        new Suggestions(id);
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Suggestions(id).setVisible(true);
+            }
+        });
+        //new Suggestions(id);
     }//GEN-LAST:event_b_suggestionsActionPerformed
 
     private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messmenuActionPerformed
         // TODO add your handling code here:
         if(val==false)
+        {
             new ViewMessMenu();
+        }
         else
-            new MessMenuAdmin();
+        {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MessMenuAdmin().setVisible(true);
+            }
+        });
+           // new MessMenuAdmin();
+        }
     }//GEN-LAST:event_b_messmenuActionPerformed
 
     private void b_hostelvacateroomchangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hostelvacateroomchangeActionPerformed
         // TODO add your handling code here:
-        new VacateChange(id);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VacateChange(id).setVisible(true);
+            }
+        });
+        //new VacateChange(id);
+        
     }//GEN-LAST:event_b_hostelvacateroomchangeActionPerformed
 
     private void b_studentslookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_studentslookupActionPerformed
         // TODO add your handling code here:
-        new StudentsLookup();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StudentsLookup().setVisible(true);
+            }
+        });
+        //new StudentsLookup();
     }//GEN-LAST:event_b_studentslookupActionPerformed
 
     private void b_messreductionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messreductionActionPerformed
         // TODO add your handling code here:
-        new MessReduction(id);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MessReduction(id).setVisible(true);
+            }
+        });
+        //new MessReduction(id);
     }//GEN-LAST:event_b_messreductionActionPerformed
 
     private void b_messbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messbillActionPerformed
         // TODO add your handling code here:
-        new MessBill(id);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StudentMessBill(id).setVisible(true);
+            }
+        });
+        //new MessBill(id);
     }//GEN-LAST:event_b_messbillActionPerformed
 
     private void b_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_logoutActionPerformed
@@ -340,40 +368,14 @@ public class StudentDashboard extends javax.swing.JFrame {
         //System.exit(0);
     }//GEN-LAST:event_b_logoutActionPerformed
 
-    private void b_markasreadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_markasreadActionPerformed
-        // TODO add your handling code here:
-         try {
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy ");  
-                        LocalDateTime now = LocalDateTime.now();  
-                        String today=dtf.format(now);
-                        Class.forName("com.mysql.cj.jdbc.Driver");
-                        Connection con=DriverManager.getConnection("jdbc:mysql://localhost/?user=hari&password=ubuntupassword");
-                        PreparedStatement stmt=con.prepareStatement("UPDATE `proj`.`MESSAGES` SET `TIME_READ` = ? WHERE (`MSG_TO`=? AND`TIME_READ` = ?);");
-                        stmt.setString(1,today);
-                        stmt.setString(2,id);
-                        stmt.setString(3,"UNREAD");
-                        int flag1 = stmt.executeUpdate();
-                        if(flag1==1)
-                            JOptionPane.showMessageDialog(null,"Status Updated");
-                        stmt.close();
-                        con.close();
-                        
-                    
-                
-            }catch(SQLException s)
-            {
-                System.out.println("SQL Exception "+s.getStackTrace()[0].getLineNumber()+s.getMessage());
-            }catch(Exception e)
-            {
-                System.out.println("Exception "+e.toString());
-            }
-            fetch();
-        
-    }//GEN-LAST:event_b_markasreadActionPerformed
-
     private void b_myprofileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_myprofileActionPerformed
         // TODO add your handling code here:
-        new MyProfile(id);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MyProfile(id).setVisible(true);
+            }
+        });
+        //new MyProfile(id);
     }//GEN-LAST:event_b_myprofileActionPerformed
 
     /**
@@ -416,7 +418,6 @@ public class StudentDashboard extends javax.swing.JFrame {
     private javax.swing.JButton b_homegoingoutgoing;
     private javax.swing.JButton b_hostelvacateroomchange;
     private javax.swing.JButton b_logout;
-    private javax.swing.JButton b_markasread;
     private javax.swing.JButton b_messbill;
     private javax.swing.JButton b_messmenu;
     private javax.swing.JButton b_messreduction;
