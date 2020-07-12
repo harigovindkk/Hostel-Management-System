@@ -16,23 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ADMIN`
+-- Table structure for table `SPECIAL_BILL_REG`
 --
 
-DROP TABLE IF EXISTS `ADMIN`;
+DROP TABLE IF EXISTS `SPECIAL_BILL_REG`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ADMIN` (
-  `NAME` int(11) NOT NULL,
-  `REG_NO` varchar(45) NOT NULL,
-  `PHONE_NUMBER` varchar(45) DEFAULT NULL,
-  `EMAIL` varchar(45) DEFAULT NULL,
-  `PASSWORD` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`REG_NO`),
-  UNIQUE KEY `REG_NO_UNIQUE` (`REG_NO`),
-  UNIQUE KEY `PHONE_NUMBER_UNIQUE` (`PHONE_NUMBER`),
-  UNIQUE KEY `EMAIL_UNIQUE` (`EMAIL`),
-  UNIQUE KEY `PASSWORD_UNIQUE` (`PASSWORD`)
+CREATE TABLE `SPECIAL_BILL_REG` (
+  `USERID` int(11) NOT NULL,
+  `MONTH` varchar(45) NOT NULL,
+  `YEAR` varchar(45) NOT NULL,
+  `MAINTANENCE_FEE` varchar(45) DEFAULT NULL,
+  `STAFF_SALARY` varchar(45) DEFAULT NULL,
+  `FIXED_CHARGE` varchar(45) DEFAULT NULL,
+  `ELECTRICITY_FEE` varchar(45) DEFAULT NULL,
+  `WATER_FEE` varchar(45) DEFAULT NULL,
+  `MISCALLENOUS_FEE` varchar(45) DEFAULT NULL,
+  `FINAL_AMOUNT` varchar(45) NOT NULL,
+  `BILL_DATE` varchar(45) NOT NULL,
+  `DUE_DATE` varchar(45) NOT NULL,
+  PRIMARY KEY (`USERID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

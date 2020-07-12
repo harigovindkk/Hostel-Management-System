@@ -16,23 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `ADMIN`
+-- Table structure for table `OVERALL_BILL_STATUS`
 --
 
-DROP TABLE IF EXISTS `ADMIN`;
+DROP TABLE IF EXISTS `OVERALL_BILL_STATUS`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ADMIN` (
-  `NAME` int(11) NOT NULL,
-  `REG_NO` varchar(45) NOT NULL,
-  `PHONE_NUMBER` varchar(45) DEFAULT NULL,
-  `EMAIL` varchar(45) DEFAULT NULL,
-  `PASSWORD` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`REG_NO`),
-  UNIQUE KEY `REG_NO_UNIQUE` (`REG_NO`),
-  UNIQUE KEY `PHONE_NUMBER_UNIQUE` (`PHONE_NUMBER`),
-  UNIQUE KEY `EMAIL_UNIQUE` (`EMAIL`),
-  UNIQUE KEY `PASSWORD_UNIQUE` (`PASSWORD`)
+CREATE TABLE `OVERALL_BILL_STATUS` (
+  `USER_ID` varchar(45) NOT NULL,
+  `JANUARY` varchar(45) DEFAULT NULL,
+  `FEBRUARY` varchar(45) DEFAULT NULL,
+  `MARCH` varchar(45) DEFAULT NULL,
+  `APRIL` varchar(45) DEFAULT NULL,
+  `MAY` varchar(45) DEFAULT NULL,
+  `JUNE` varchar(45) DEFAULT NULL,
+  `JULY` varchar(45) DEFAULT NULL,
+  `AUGUST` varchar(45) DEFAULT NULL,
+  `SEPTEMBER` varchar(45) DEFAULT NULL,
+  `OCTOBER` varchar(45) DEFAULT NULL,
+  `NOVEMBER` varchar(45) DEFAULT NULL,
+  `DECEMBER` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
