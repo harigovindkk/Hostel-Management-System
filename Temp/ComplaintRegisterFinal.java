@@ -66,6 +66,7 @@ public class ComplaintRegisterFinal extends javax.swing.JFrame {
         jLabel3.setText("Complaint Details");
 
         ta_details.setColumns(20);
+        ta_details.setLineWrap(true);
         ta_details.setRows(5);
         jScrollPane1.setViewportView(ta_details);
 
