@@ -283,7 +283,7 @@ public class StudentDashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ComplaintRegister(id).setVisible(true);
+                new ComplaintRegisterFinal(id).setVisible(true);
             }
         });
         //new ComplaintRegister(id);
