@@ -265,7 +265,7 @@ public class StudentDashboard extends javax.swing.JFrame {
     private void b_homegoingoutgoingActionPerformed(java.awt.event.ActionEvent evt) {    
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home_OutgoingRegister(id).setVisible(true);
+                new Home_OutgoingRegisterFinal(id).setVisible(true);
             }
         });      
     }
