@@ -5,6 +5,12 @@
  */
 package hmsadmin;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author hari
@@ -14,6 +20,10 @@ public class ViewBillRegister extends javax.swing.JFrame {
     /**
      * Creates new form ViewBillRegister
      */
+    Connection con;
+        PreparedStatement pst=null;
+        ResultSet rs;
+    String option;
     public ViewBillRegister() {
         initComponents();
     }
@@ -62,7 +72,7 @@ public class ViewBillRegister extends javax.swing.JFrame {
 
         jLabel1.setText("Select An Option");
 
-        cb_option.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "View Bills By Month", "View Bs Of A Student", "View Unpaid Bills Of A Month" }));
+        cb_option.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "View Common Bill of a Month", "View Special Bills Of A Student", "View overall Bill Status Of A Month" }));
 
         jLabel2.setText("Enter Student ID");
 
@@ -118,18 +128,19 @@ public class ViewBillRegister extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(268, 268, 268)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cb_option, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(t_studentid))
+                            .addComponent(cb_option, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t_studentid, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(mc_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -137,15 +148,14 @@ public class ViewBillRegister extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(b_proceed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_fetchstudentbill, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
-                            .addComponent(b_fetchmonthbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane2))
-                .addContainerGap(53, Short.MAX_VALUE))
+                            .addComponent(b_fetchstudentbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_fetchmonthbill, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cb_option, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,7 +171,7 @@ public class ViewBillRegister extends javax.swing.JFrame {
                     .addComponent(mc_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(y_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_fetchmonthbill))
-                .addGap(61, 61, 61)
+                .addGap(49, 49, 49)
                 .addComponent(jLabel4)
                 .addGap(41, 41, 41)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,14 +183,83 @@ public class ViewBillRegister extends javax.swing.JFrame {
 
     private void b_proceedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_proceedActionPerformed
         // TODO add your handling code here:
+        option=cb_option.getItemAt(cb_option.getSelectedIndex());
+        if(option.equals("View Common Bill of a Month")||option.equals("View overall Bill Status Of A Month"))
+        {
+            mc_month.setEnabled(true);
+            y_year.setEnabled(true);
+            b_fetchmonthbill.setEnabled(true);
+            t_studentid.setEnabled(false);
+            b_fetchstudentbill.setEnabled(false);
+        }
+        else
+        {
+            mc_month.setEnabled(false);
+            y_year.setEnabled(false);
+            b_fetchmonthbill.setEnabled(false);
+            t_studentid.setEnabled(true);
+            b_fetchstudentbill.setEnabled(true);
+            
+        }
     }//GEN-LAST:event_b_proceedActionPerformed
 
     private void b_fetchstudentbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_fetchstudentbillActionPerformed
         // TODO add your handling code here:
+        String userid=t_studentid.getText();
+        try
+     {
+         con = new Connector().getCon();
+         pst=con.prepareStatement("SELECT * FROM proj.SPECIAL_BILL_REG WHERE USERID= ?;");
+         pst.setString(1,userid);
+         rs=pst.executeQuery();
+         t_register.setModel(DbUtils.resultSetToTableModel(rs));
+         if(!rs.first())
+         {
+               JOptionPane.showMessageDialog(null, "No data found");         
+         }
+              
+         
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e);
+     }
+        
+        
     }//GEN-LAST:event_b_fetchstudentbillActionPerformed
 
     private void b_fetchmonthbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_fetchmonthbillActionPerformed
         // TODO add your handling code here:
+        String monthname[]={"JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"};
+        int m=mc_month.getMonth();
+        int year=y_year.getYear();
+        String month=monthname[m];
+        
+
+         try
+     {
+         con = new Connector().getCon();
+         if(option.equals("View Common Bill of a Month"))
+         {
+         pst=con.prepareStatement("SELECT * FROM proj.COMMON_MESS_BILL WHERE MONTH=? AND YEAR=?;");
+         pst.setString(2,Integer.toString(year));
+         }
+         else if(option.equals("View overall Bill Status Of A Month"))
+             pst=con.prepareStatement("SELECT USER_ID,? FROM proj.OVERALL_BILL_STATUS;");
+         pst.setString(1,month);
+         rs=pst.executeQuery();
+           t_register.setModel(DbUtils.resultSetToTableModel(rs));
+          if(!rs.first())
+         {
+               JOptionPane.showMessageDialog(null, "No data found");         
+         }
+         
+     }
+     catch(Exception e)
+     {
+         JOptionPane.showMessageDialog(null, e);
+     }
+        
     }//GEN-LAST:event_b_fetchmonthbillActionPerformed
 
     /**

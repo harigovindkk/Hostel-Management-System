@@ -183,7 +183,7 @@ public class DeleteComplaintsAdmin extends javax.swing.JFrame {
             con = new Connector().getCon();
             PreparedStatement pst=con.prepareStatement("DELETE  FROM proj.COMPLAINT_REG WHERE STATUS = ? ;");
             pst.setString(1, "Solved");
-            pst.executeUpdate();
+            if(pst.executeUpdate()>=1)
             JOptionPane.showMessageDialog(frame,"Solved Complaints Deleted");
         }
         catch(Exception e) {
@@ -197,9 +197,9 @@ public class DeleteComplaintsAdmin extends javax.swing.JFrame {
         JFrame frame=new JFrame();
         try {
             con = new Connector().getCon();
-            PreparedStatement pst=con.prepareStatement("DELETE * FROM proj.COMPLAINT_REG WHERE STATUS = ?;");
+            PreparedStatement pst=con.prepareStatement("DELETE  FROM proj.COMPLAINT_REG WHERE STATUS = ?;");
             pst.setString(1, "Pending");
-            pst.executeUpdate();
+            if(pst.executeUpdate()>=1)
             JOptionPane.showMessageDialog(frame,"Pending Complaints Deleted");
         }
         catch(Exception e) {
@@ -213,6 +213,7 @@ public class DeleteComplaintsAdmin extends javax.swing.JFrame {
         try {
             con = new Connector().getCon();
             PreparedStatement pst=con.prepareStatement("TRUNCATE `proj`.`COMPLAINT_REG`;");
+            if(pst.executeUpdate()>=1)
             JOptionPane.showMessageDialog(frame,"All Complaints Deleted");
         }
         catch(Exception e) {

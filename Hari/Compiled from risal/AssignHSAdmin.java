@@ -5,6 +5,7 @@
  */
 package hmsadmin;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -19,7 +20,11 @@ public class AssignHSAdmin extends javax.swing.JFrame {
     private Connection con;
     public AssignHSAdmin() {
         initComponents();
-        try {    
+       fetch();
+    }
+    public void fetch()
+    {
+         try {    
             con = new Connector().getCon();
             try {
                 PreparedStatement pst=con.prepareStatement("SELECT HS_REG_ID,NAME FROM proj.HS,proj.STUDENTLIST WHERE proj.HS.HS_REG_ID=proj.STUDENTLIST.REG_NO;");
@@ -50,14 +55,15 @@ public class AssignHSAdmin extends javax.swing.JFrame {
         b_changehs = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        b_refresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Hostel Secretary List");
         setResizable(false);
 
-        l_currenths.setText("Current HS:");
+        l_currenths.setText("Current HS List:");
 
-        b_changehs.setText("Change HS");
+        b_changehs.setText("Update HS");
         b_changehs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_changehsActionPerformed(evt);
@@ -74,32 +80,42 @@ public class AssignHSAdmin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
+        b_refresh.setText("Refresh Table");
+        b_refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_refreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(l_currenths))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(39, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(l_currenths)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(b_changehs)))
-                .addGap(31, 31, 31))
+                .addGap(67, 67, 67)
+                .addComponent(b_refresh)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(b_changehs)
+                .addGap(95, 95, 95))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(l_currenths)
-                    .addComponent(b_changehs))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
+                .addComponent(l_currenths)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(107, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b_changehs)
+                    .addComponent(b_refresh))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -107,8 +123,19 @@ public class AssignHSAdmin extends javax.swing.JFrame {
 
     private void b_changehsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_changehsActionPerformed
         // TODO add your handling code here:
-        new AssignHSAdminDeep();
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AssignHSAdminDeep().setVisible(true);
+            }
+        });
+         
     }//GEN-LAST:event_b_changehsActionPerformed
+
+    private void b_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_refreshActionPerformed
+        // TODO add your handling code here:
+        fetch();
+        JOptionPane.showMessageDialog(null,"Refreshed with latest data");
+    }//GEN-LAST:event_b_refreshActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +174,7 @@ public class AssignHSAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b_changehs;
+    private javax.swing.JButton b_refresh;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel l_currenths;
     private javax.swing.JTable table;

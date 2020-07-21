@@ -70,14 +70,14 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        b_suggestions.setText("Suggestions");
+        b_suggestions.setText("Suggestions Register");
         b_suggestions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_suggestionsActionPerformed(evt);
             }
         });
 
-        b_messmenu.setText("Mess Menu");
+        b_messmenu.setText("View/Change Mess Menu");
         b_messmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_messmenuActionPerformed(evt);
@@ -98,14 +98,14 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        b_messreduction.setText("Mess Reduction");
+        b_messreduction.setText("Mess Reduction Requests");
         b_messreduction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_messreductionActionPerformed(evt);
             }
         });
 
-        b_messbill.setText("Mess Bill");
+        b_messbill.setText("Mess Bill Register");
         b_messbill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_messbillActionPerformed(evt);
@@ -126,21 +126,21 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        b_assignhs.setText("Assign HS");
+        b_assignhs.setText("Add/Remove HS");
         b_assignhs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_assignhsActionPerformed(evt);
             }
         });
 
-        b_updatemessbill.setText("Update Mess Bill");
+        b_updatemessbill.setText("Add/Update Mess Bill");
         b_updatemessbill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_updatemessbillActionPerformed(evt);
             }
         });
 
-        b_addadmin.setText("Add Admin");
+        b_addadmin.setText("Add New Admin");
         b_addadmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b_addadminActionPerformed(evt);
@@ -327,15 +327,21 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void b_contactinamtesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_contactinamtesActionPerformed
         // TODO add your handling code here:
-         java.awt.EventQueue.invokeLater(new Runnable() {
+                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SendMessage().setVisible(true);
+                new ContactInmatesAdmin(id).setVisible(true);
             }
         });
     }//GEN-LAST:event_b_contactinamtesActionPerformed
 
     private void b_addadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addadminActionPerformed
         // TODO add your handling code here:
+        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new RegistrationWindowAdmin().setVisible(true);
+            }
+        });
         
     }//GEN-LAST:event_b_addadminActionPerformed
 

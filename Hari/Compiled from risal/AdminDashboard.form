@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_suggestions">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Suggestions"/>
+        <Property name="text" type="java.lang.String" value="Suggestions Register"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_suggestionsActionPerformed"/>
@@ -145,7 +145,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_messmenu">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mess Menu"/>
+        <Property name="text" type="java.lang.String" value="View/Change Mess Menu"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_messmenuActionPerformed"/>
@@ -169,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_messreduction">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mess Reduction"/>
+        <Property name="text" type="java.lang.String" value="Mess Reduction Requests"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_messreductionActionPerformed"/>
@@ -177,7 +177,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_messbill">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mess Bill"/>
+        <Property name="text" type="java.lang.String" value="Mess Bill Register"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_messbillActionPerformed"/>
@@ -201,7 +201,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_assignhs">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Assign HS"/>
+        <Property name="text" type="java.lang.String" value="Add/Remove HS"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_assignhsActionPerformed"/>
@@ -209,7 +209,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_updatemessbill">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update Mess Bill"/>
+        <Property name="text" type="java.lang.String" value="Add/Update Mess Bill"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_updatemessbillActionPerformed"/>
@@ -217,7 +217,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="b_addadmin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Admin"/>
+        <Property name="text" type="java.lang.String" value="Add New Admin"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="b_addadminActionPerformed"/>

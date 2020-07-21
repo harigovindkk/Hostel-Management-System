@@ -5,6 +5,14 @@
  */
 package hmsadmin;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  *
@@ -102,11 +110,36 @@ public class MessMenuAdmin extends javax.swing.JFrame {
 
     private void b_choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_choosefileActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UpdateMessMenu().setVisible(true);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files","jpg");
+        JFileChooser file=new JFileChooser();
+        JFrame frame=new JFrame();
+        file.setMultiSelectionEnabled(true);
+        file.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        file.setFileFilter(filter);
+        file.setFileHidingEnabled(false);
+        if (file.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            java.io.File f = file.getSelectedFile();
+            tf_selectedfile.setText(file.getSelectedFile().getAbsolutePath());
+            File src=new File(f.getPath());
+            //String ext=FilenameUtils.getExtension(f.getPath());
+            File dest=new File("./src/projecttemp/messmenu.jpg");
+            try {
+                if(dest.exists())
+                {
+                    dest.delete();
+                }
+                Files.copy(src.toPath(), dest.toPath());                
+                JOptionPane.showMessageDialog(frame,"Mess Menu Updated");
             }
-        });
+            catch(IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(frame,"Error in updation");
+            }
+        }
+        else
+        {
+             tf_selectedfile.setText("File not chosen");
+        }
         
     }//GEN-LAST:event_b_choosefileActionPerformed
 

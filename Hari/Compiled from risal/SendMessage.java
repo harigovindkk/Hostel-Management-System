@@ -29,8 +29,6 @@ public class SendMessage extends javax.swing.JFrame {
     String adminid;
     public SendMessage(String adminid) {
         this.adminid=adminid;
-    }
-    public SendMessage() {
         initComponents();
     }
 

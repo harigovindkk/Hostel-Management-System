@@ -50,9 +50,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Component id="jScrollPane2" alignment="0" min="-2" pref="1067" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -60,10 +62,8 @@
                       </Group>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="cb_option" min="-2" pref="208" max="-2" attributes="0"/>
-                              <Component id="t_studentid" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="cb_option" min="-2" pref="208" max="-2" attributes="0"/>
+                          <Component id="t_studentid" min="-2" pref="208" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="mc_month" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -73,20 +73,19 @@
                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="b_proceed" max="32767" attributes="0"/>
-                          <Component id="b_fetchstudentbill" pref="109" max="32767" attributes="0"/>
-                          <Component id="b_fetchmonthbill" max="32767" attributes="0"/>
+                          <Component id="b_fetchstudentbill" max="32767" attributes="0"/>
+                          <Component id="b_fetchmonthbill" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cb_option" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -105,7 +104,7 @@
                   <Component id="y_year" min="-2" max="-2" attributes="0"/>
                   <Component id="b_fetchmonthbill" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="138" max="-2" attributes="0"/>
@@ -124,9 +123,9 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="View Bills By Month"/>
-            <StringItem index="1" value="View Bs Of A Student"/>
-            <StringItem index="2" value="View Unpaid Bills Of A Month"/>
+            <StringItem index="0" value="View Common Bill of a Month"/>
+            <StringItem index="1" value="View Special Bills Of A Student"/>
+            <StringItem index="2" value="View overall Bill Status Of A Month"/>
           </StringArray>
         </Property>
       </Properties>
