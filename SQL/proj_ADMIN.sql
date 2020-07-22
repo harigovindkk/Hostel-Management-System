@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `ADMIN`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ADMIN` (
-  `NAME` int(11) NOT NULL,
+  `NAME` varchar(45) NOT NULL,
   `REG_NO` varchar(45) NOT NULL,
   `PHONE_NUMBER` varchar(45) DEFAULT NULL,
   `EMAIL` varchar(45) DEFAULT NULL,
@@ -45,4 +45,4 @@ CREATE TABLE `ADMIN` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-12 23:30:52
+-- Dump completed on 2020-07-22 10:53:07
