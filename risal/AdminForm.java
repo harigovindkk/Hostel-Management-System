@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package hari;
 
 /**
  *
@@ -13,9 +13,10 @@ public class AdminForm extends javax.swing.JFrame {
 
     /**
      * Creates new form AdminForm
+     * 
      */
-    public AdminForm() {
-        initComponents();
+    public AdminForm(String admin_id) {
+        initComponents(admin_id);
     }
 
     /**
@@ -25,28 +26,35 @@ public class AdminForm extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(String admin_id) {
 
+        this.admin_id=admin_id;
         l_welcome = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        b_homeoutregister = new javax.swing.JButton();
         b_complaintregister = new javax.swing.JButton();
         b_suggestions = new javax.swing.JButton();
         b_messmenu = new javax.swing.JButton();
         b_hostelvacaterequet = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        b_studentslookup = new javax.swing.JButton();
         b_roomchangerequest = new javax.swing.JButton();
         b_messreduction = new javax.swing.JButton();
         b_messbill = new javax.swing.JButton();
         b_contactinamtes = new javax.swing.JButton();
         b_logout = new javax.swing.JButton();
         b_assignhs = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        b_updatemessbill = new javax.swing.JButton();
+        b_addadmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         l_welcome.setText("Welcome ! Select amy one of the below options to continue");
 
-        jButton1.setText("Homegoing/Outgoing Registeer");
+        b_homeoutregister.setText("Homegoing/Outgoing Registeer");
+        b_homeoutregister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_homeoutregisterActionPerformed(evt);
+            }
+        });
 
         b_complaintregister.setText("Complaint Register");
         b_complaintregister.addActionListener(new java.awt.event.ActionListener() {
@@ -56,26 +64,88 @@ public class AdminForm extends javax.swing.JFrame {
         });
 
         b_suggestions.setText("Suggestions");
+        b_suggestions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_suggestionsActionPerformed(evt);
+            }
+        });
 
         b_messmenu.setText("Mess Menu");
+        b_messmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_messmenuActionPerformed(evt);
+            }
+        });
 
         b_hostelvacaterequet.setText("Hostel Vacate Request");
+        b_hostelvacaterequet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_hostelvacaterequetActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Students Lookup");
+        b_studentslookup.setText("Students Lookup");
+        b_studentslookup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_studentslookupActionPerformed(evt);
+            }
+        });
 
         b_roomchangerequest.setText("Room Change Request");
+        b_roomchangerequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_roomchangerequestActionPerformed(evt);
+            }
+        });
 
         b_messreduction.setText("Mess Reduction");
+        b_messreduction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_messreductionActionPerformed(evt);
+            }
+        });
 
         b_messbill.setText("Mess Bill");
+        b_messbill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_messbillActionPerformed(evt);
+            }
+        });
 
         b_contactinamtes.setText("Contact Inmates");
+        b_contactinamtes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_contactinamtesActionPerformed(evt);
+            }
+        });
 
         b_logout.setText("Logout");
+        b_logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_logoutActionPerformed(evt);
+            }
+        });
 
         b_assignhs.setText("Assign HS");
+        b_assignhs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_assignhsActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Update Mess Bill");
+        b_updatemessbill.setText("Update Mess Bill");
+        b_updatemessbill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_updatemessbillActionPerformed(evt);
+            }
+        });
+
+        b_addadmin.setText("Add Admin");
+        b_addadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_addadminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,30 +156,31 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 121, Short.MAX_VALUE)
+                        .addComponent(l_welcome)
+                        .addGap(94, 94, 94))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(b_addadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_assignhs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_roomchangerequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_homeoutregister, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_complaintregister, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_suggestions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(b_messmenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(l_welcome)
-                                .addGap(94, 94, 94))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(b_hostelvacaterequet, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                                    .addComponent(b_studentslookup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_messreduction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_messbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_contactinamtes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(b_updatemessbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(b_logout)
-                                .addGap(30, 30, 30))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(b_assignhs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_roomchangerequest, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_complaintregister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_suggestions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_messmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(b_hostelvacaterequet, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_messreduction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_messbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(b_contactinamtes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                                .addGap(30, 30, 30))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,11 +189,11 @@ public class AdminForm extends javax.swing.JFrame {
                 .addComponent(l_welcome)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(b_homeoutregister, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_hostelvacaterequet, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                    .addComponent(b_studentslookup, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                     .addComponent(b_complaintregister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -135,14 +206,20 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(b_roomchangerequest, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                    .addComponent(b_updatemessbill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(b_contactinamtes, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(b_assignhs, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addComponent(b_logout)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(b_logout)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_addadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
 
         pack();
@@ -151,6 +228,58 @@ public class AdminForm extends javax.swing.JFrame {
     private void b_complaintregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_complaintregisterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_complaintregisterActionPerformed
+
+    private void b_studentslookupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_studentslookupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_studentslookupActionPerformed
+
+    private void b_homeoutregisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_homeoutregisterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_homeoutregisterActionPerformed
+
+    private void b_hostelvacaterequetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_hostelvacaterequetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_hostelvacaterequetActionPerformed
+
+    private void b_suggestionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_suggestionsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_suggestionsActionPerformed
+
+    private void b_messreductionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messreductionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_messreductionActionPerformed
+
+    private void b_messmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messmenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_messmenuActionPerformed
+
+    private void b_messbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_messbillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_messbillActionPerformed
+
+    private void b_roomchangerequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_roomchangerequestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_roomchangerequestActionPerformed
+
+    private void b_updatemessbillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_updatemessbillActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_updatemessbillActionPerformed
+
+    private void b_assignhsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_assignhsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_assignhsActionPerformed
+
+    private void b_contactinamtesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_contactinamtesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_contactinamtesActionPerformed
+
+    private void b_addadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_addadminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_addadminActionPerformed
+
+    private void b_logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_logoutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_b_logoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,25 +311,27 @@ public class AdminForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminForm().setVisible(true);
+                new AdminForm("456").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton b_addadmin;
     private javax.swing.JButton b_assignhs;
     private javax.swing.JButton b_complaintregister;
     private javax.swing.JButton b_contactinamtes;
+    private javax.swing.JButton b_homeoutregister;
     private javax.swing.JButton b_hostelvacaterequet;
     private javax.swing.JButton b_logout;
     private javax.swing.JButton b_messbill;
     private javax.swing.JButton b_messmenu;
     private javax.swing.JButton b_messreduction;
     private javax.swing.JButton b_roomchangerequest;
+    private javax.swing.JButton b_studentslookup;
     private javax.swing.JButton b_suggestions;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton b_updatemessbill;
     private javax.swing.JLabel l_welcome;
     // End of variables declaration//GEN-END:variables
+    private String admin_id;
 }

@@ -7,6 +7,8 @@ package hari;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,8 +17,13 @@ import java.security.NoSuchAlgorithmException;
 public class HashingPassword {
     
     
-    public static String generateHash(String data) throws NoSuchAlgorithmException {
-        MessageDigest digest=MessageDigest.getInstance("SHA-256");
+    public static String generateHash(String data) {
+        MessageDigest digest = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(HashingPassword.class.getName()).log(Level.SEVERE, null, ex);
+        }
         digest.reset();
         byte[] hash=digest.digest(data.getBytes());
         return bytesToStringHex(hash);
